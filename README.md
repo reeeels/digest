@@ -11,10 +11,10 @@ The goal of the project is to deliver a web application that delivers personaliz
 
 ## Run the development server:
 
-```bash
+-- ```bash
 npm run dev
 ```
-```
+-- ```
 yarn dev
 ```
 
