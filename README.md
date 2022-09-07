@@ -9,7 +9,7 @@ The goal of the project is to deliver a web application that delivers personaliz
 - User data will be stored in a database (FireBase) and will be fetched upon request as users make requests and changes.
 
 
-Run the development server:
+## Run the development server:
 
 ```bash
 npm run dev
