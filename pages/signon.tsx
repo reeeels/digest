@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import Container from '@mui/material/Container'
 
-const index: NextPage = () => {
+const signon: NextPage = () => {
   return (
     <Container maxWidth="md">
       <Head>
@@ -22,7 +22,7 @@ const index: NextPage = () => {
             transition={{ duration: .5 }}
           >
             <h1 className="text-7xl font-bold text-center">
-              welcome to Digest!
+              signing page!
             </h1>
           </motion.div>
           <motion.div
@@ -31,9 +31,9 @@ const index: NextPage = () => {
             transition={{ delay: 1.5, duration: .2 }}
           >
             <h3 className="text-4xl text-right">
-              <Link href="/signon">
+              <Link href="/home">
                 <a>
-                <div>Let's get you started
+                <div>On correct auth..
                   <NavigateNextIcon sx={{ fontSize: 60 }} />
                 </div>
                 </a>
@@ -46,4 +46,4 @@ const index: NextPage = () => {
   )
 }
 
-export default index
+export default signon;

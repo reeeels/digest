@@ -1,3 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.btn:focus {
+  @apply outline-none
+}
+
 html,
 body {
   padding: 0;
