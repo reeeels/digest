@@ -15,12 +15,19 @@
     "@emotion/styled": "latest",
     "@mui/icons-material": "^5.10.3",
     "@mui/material": "^5.10.4",
+    "@types/js-cookie": "^3.0.2",
+    "firebase": "^9.10.0",
+    "firebase-admin": "^11.0.1",
     "framer-motion": "^7.3.2",
+    "js-cookie": "^2.2.1",
     "next": "12.2.5",
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react": "^18.2.0",
+    "react-dom": "18.2.0",
+    "react-firebase-hooks": "^5.0.3",
+    "react-firebaseui": "^6.0.0"
   },
   "devDependencies": {
+    "@svgr/webpack": "^6.3.1",
     "@types/node": "18.7.15",
     "@types/react": "18.0.18",
     "@types/react-dom": "18.0.6",

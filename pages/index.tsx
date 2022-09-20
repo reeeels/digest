@@ -31,7 +31,7 @@ const index: NextPage = () => {
             transition={{ delay: 1.5, duration: .2 }}
           >
             <h3 className="text-4xl text-right">
-              <Link href="/signon">
+              <Link href="/auth">
                 <a>
                 <div>Let's get you started
                   <NavigateNextIcon sx={{ fontSize: 60 }} />

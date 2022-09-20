@@ -22,7 +22,7 @@ const signon: NextPage = () => {
             transition={{ duration: .5 }}
           >
             <h1 className="text-7xl font-bold text-center">
-              signing page!
+              select topics!
             </h1>
           </motion.div>
           <motion.div
@@ -33,7 +33,7 @@ const signon: NextPage = () => {
             <h3 className="text-4xl text-right">
               <Link href="/home">
                 <a>
-                <div>On correct auth..
+                <div>After selection..
                   <NavigateNextIcon sx={{ fontSize: 60 }} />
                 </div>
                 </a>
