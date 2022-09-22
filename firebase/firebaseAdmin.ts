@@ -1,4 +1,4 @@
-import admin from "firebase-admin";
+import admin from 'firebase-admin';
 
 export const verifyIdToken = (token: string) => {
     const firebasePrivateKey = process.env.FIREBASE_PRIVATE_KEY

@@ -7,13 +7,13 @@ import {
     TwitterAuthProvider,
     GithubAuthProvider,
     EmailAuthProvider
-} from "firebase/auth";
+} from 'firebase/auth';
 import { setUserCookie } from '../../firebase/userCookies'
 import { mapUserData } from '../../firebase/mapUserData'
 
 initFirebase() // initialize firebase
 
-const auth = getAuth()
+const auth = getAuth();
 
 const firebaseAuthConfig = {
     signInFlow: 'popup',

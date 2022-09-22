@@ -13,6 +13,7 @@
     "@emotion/react": "latest",
     "@emotion/server": "latest",
     "@emotion/styled": "latest",
+    "@headlessui/react": "^1.7.2",
     "@mui/icons-material": "^5.10.3",
     "@mui/material": "^5.10.4",
     "@types/js-cookie": "^3.0.2",

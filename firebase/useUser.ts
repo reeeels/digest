@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { initFirebase } from './initFirebase'
-import { getAuth } from "firebase/auth";
+import { getAuth } from 'firebase/auth';
 import {
     removeUserCookie,
     setUserCookie,
@@ -20,7 +20,7 @@ const useUser = () => {
         try {
             await auth.signOut();
             removeUserCookie();
-            router.push("/auth");
+            router.push('/auth');
         } catch (e: any) {
             console.log(e.message);
         }
