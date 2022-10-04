@@ -2,8 +2,11 @@ import React from 'react'
 import { Menu } from '@headlessui/react'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { initFirebase } from '../firebase/initFirebase';
+import { useUser } from '../firebase/useUser';
 
 const Account = () => {
+    const { user, logout } = useUser();
+    
     return (
         <Menu>
             <Menu.Button className='focus:outline-none'>
@@ -32,7 +35,7 @@ const Account = () => {
                         <a
                             className={`${active && ''}`}
                         >
-                            <button onClick={()=>{}}>
+                            <button onClick={() => logout()}>
                                 Log Out
                             </button>
                         </a>

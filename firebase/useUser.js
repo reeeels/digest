@@ -20,8 +20,8 @@ const useUser = () => {
         try {
             await auth.signOut();
             removeUserCookie();
-            router.push('/auth');
-        } catch (e: any) {
+            router.push('/');
+        } catch (e) {
             console.log(e.message);
         }
     }
@@ -30,14 +30,14 @@ const useUser = () => {
         // Firebase updates the id token every hour, this
         // makes sure the react state and the cookie are
         // both kept up to date
-        const cancelAuthListener = auth.onIdTokenChanged((user: any) => {
+        const cancelAuthListener = auth.onIdTokenChanged((user) => {
             if (user) {
                 const userData = mapUserData(user)
                 setUserCookie(userData)
-                setUser(userData as any)
+                setUser(userData)
             } else {
-                removeUserCookie()
-                setUser(undefined);
+                removeUserCookie();
+                setUser();
             }
         })
 
