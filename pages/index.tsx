@@ -4,7 +4,7 @@ import NavigateNextIcon from '@mui/icons-material/NavigateNext'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import Container from '@mui/material/Container'
-import Auth from '../components/auth'
+import Auth from '../components/Auth'
 
 const index: NextPage = () => {
   return (

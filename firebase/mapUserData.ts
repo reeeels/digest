@@ -13,6 +13,6 @@ export const mapUserData = (user: userData) => {
         email,
         token: xa,
         name: displayName,
-        profilePic: photoUrl
+        profilePic: photoUrl,
     }
 }
