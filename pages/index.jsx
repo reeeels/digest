@@ -1,12 +1,9 @@
-import type { NextPage } from 'next'
 import Head from 'next/head'
-import NavigateNextIcon from '@mui/icons-material/NavigateNext'
-import Link from 'next/link'
 import { motion } from 'framer-motion'
 import Container from '@mui/material/Container'
 import Auth from '../components/Auth'
 
-const index: NextPage = () => {
+const index = () => {
   return (
     <Container maxWidth='md'>
       <Head>

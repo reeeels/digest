@@ -1,16 +1,28 @@
 import * as React from 'react';
 import Head from 'next/head';
-import { NextPage } from 'next';
 import SearchIcon from '@mui/icons-material/Search';
 import Navbar from '../components/Navbar';
 import { useUser } from '../firebase/useUser';
 import Topic from '../components/Topic';
 import Image from 'next/image';
+import db from '../firebase/initFirebase';
 
 const home = () => {
   const date = new Date().getHours();
   const greeting = date < 12 ? 'Morning' : date < 18 ? 'Afternoon' : 'Evening';
   const { user, logout } = useUser();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const colRef = collections(db, 'topics');
+    await addDoc(colRef, {})
+    const searchValue = search.value;
+    const searchResult = await db
+      .collection('topics')
+      .where('title', '==', searchValue)
+      .get();
+    console.log(searchResult);
+  }
 
   const Topics = [
     'Sports',

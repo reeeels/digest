@@ -34,6 +34,16 @@ const Account = () => {
                     {({ active }) => (
                         <a
                             className={`${active && ''}`}
+                            href='/topics'
+                        >
+                            Topics
+                        </a>
+                    )}
+                </Menu.Item>
+                <Menu.Item>
+                    {({ active }) => (
+                        <a
+                            className={`${active && ''}`}
                         >
                             <button onClick={() => logout()}>
                                 Log Out
