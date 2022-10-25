@@ -6,6 +6,7 @@ import { useUser } from '../firebase/useUser';
 import Topic from '../components/Topic';
 import Image from 'next/image';
 import db from '../firebase/initFirebase';
+import NewsApi from 'newsapi'
 
 const home = () => {
   const date = new Date().getHours();
@@ -23,6 +24,10 @@ const home = () => {
       .get();
     console.log(searchResult);
   }
+
+  fetch('https://newsapi.org/v2/top-headlines?country=us&apiKey=53f7eb5c4a0b4b5f9ba183efb9aa1fd6')
+    .then((response) => response.json())
+    .then((data) => console.log(data));
 
   const Topics = [
     'Sports',
