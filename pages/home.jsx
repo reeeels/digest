@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import SearchIcon from '@mui/icons-material/Search';
 import Navbar from '../components/Navbar';
@@ -6,12 +6,13 @@ import { useUser } from '../firebase/useUser';
 import Topic from '../components/Topic';
 import Image from 'next/image';
 import db from '../firebase/initFirebase';
-import NewsApi from 'newsapi'
+import { Article } from '../components/Article';
 
 const home = () => {
   const date = new Date().getHours();
   const greeting = date < 12 ? 'Morning' : date < 18 ? 'Afternoon' : 'Evening';
   const { user, logout } = useUser();
+  const [news, setNews] = useState();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,10 +26,13 @@ const home = () => {
     console.log(searchResult);
   }
 
-  fetch('https://newsapi.org/v2/top-headlines?country=us&apiKey=53f7eb5c4a0b4b5f9ba183efb9aa1fd6')
-    .then((response) => response.json())
-    .then((data) => console.log(data));
+  useEffect(() => {
+    fetch('https://newsapi.org/v2/top-headlines?country=us&apiKey=53f7eb5c4a0b4b5f9ba183efb9aa1fd6')
+      .then((response) => response.json())
+      .then((data) => setNews(data.articles));
+  }, [])
 
+  console.log(news);
   const Topics = [
     'Sports',
     'Politics',
@@ -80,25 +84,29 @@ const home = () => {
             <h1 className='text-2xl font-bold'>Trending</h1>
           </div>
           <div className='grid content-evenly ml-10 mb-32'>
-            <h1 className='text-5xl mb-5'>[Placeholder]</h1>
+            {/* {news && <Article news={news} />} */}
+            <h1 className='text-5xl mb-5'>{news && news[0].source.name}</h1>
             <div class="snap-mandatory snap-x flex flex-row space-x-4">
-              <div class="snap-center ...">
-                <Image width={320} height={160} src="https://images.unsplash.com/photo-1604999565976-8913ad2ddb7c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=320&h=160&q=80" />
+              <div>
+                {news && news[0].title}
               </div>
-              <div class="snap-center ...">
-                <Image width={320} height={160} src="https://images.unsplash.com/photo-1540206351-d6465b3ac5c1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=320&h=160&q=80" />
+            </div>
+            <h1 className='text-5xl mb-5'>{news && news[1].source.name}</h1>
+            <div class="snap-mandatory snap-x flex flex-row space-x-4">
+              <div>
+                {news && news[1].title}
               </div>
-              <div class="snap-center ...">
-                <Image width={320} height={160} src="https://images.unsplash.com/photo-1622890806166-111d7f6c7c97?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=320&h=160&q=80" />
+            </div>
+            <h1 className='text-5xl mb-5'>{news && news[2].source.name}</h1>
+            <div class="snap-mandatory snap-x flex flex-row space-x-4">
+              <div>
+                {news && news[2].title}
               </div>
-              <div class="snap-center ...">
-                <Image width={320} height={160} src="https://images.unsplash.com/photo-1590523277543-a94d2e4eb00b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=320&h=160&q=80" />
-              </div>
-              <div class="snap-center ...">
-                <Image width={320} height={160} src="https://images.unsplash.com/photo-1575424909138-46b05e5919ec?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=320&h=160&q=80" />
-              </div>
-              <div class="snap-center ...">
-                <Image width={320} height={160} src="https://images.unsplash.com/photo-1559333086-b0a56225a93c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=320&h=160&q=80" />
+            </div>
+            <h1 className='text-5xl mb-5'>{news && news[3].source.name}</h1>
+            <div class="snap-mandatory snap-x flex flex-row space-x-4">
+              <div>
+                {news && news[3].title}
               </div>
             </div>
           </div>

@@ -46,6 +46,7 @@ const topics = () => {
     userTopics.push(selectedTopic)
     setUserTopics(userTopics)
   }
+  // console.log(userTopics)
 
   if (user) {
 
@@ -58,6 +59,12 @@ const topics = () => {
         </Head>
         <Navbar />
         <div className='flex flex-row'>
+        <div className='mr-5 mt-4'>
+            <h1 className='text-5xl text-center'>Your Topics are: </h1>
+            {userTopics.map((topic) => {
+              <h2>{topic}</h2>
+            })}
+          </div>
           <div className='mr-5 mt-4'>
             <h1 className='text-5xl text-center'>Add a topic: </h1>
           </div>
