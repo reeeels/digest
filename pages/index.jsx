@@ -2,6 +2,7 @@ import Head from 'next/head'
 import { motion } from 'framer-motion'
 import Container from '@mui/material/Container'
 import Auth from '../components/Auth'
+import Link from 'next/link';
 
 const index = () => {
   return (
@@ -28,13 +29,12 @@ const index = () => {
             animate={{ opacity: 1, scale: .5 }}
             transition={{ delay: 1.5, duration: .2 }}
           >
-            {/* <Link href='/auth'>
+            <Link href='/home'>
               <a>
                 <h3 className='text-4xl text-right'>Let&apos;s get you started</h3>
-                <NavigateNextIcon sx={{ fontSize: 60 }} />
               </a>
-            </Link> */}
-          <Auth />
+            </Link>
+          {/* <Auth /> */}
           </motion.div>
         </div>
       </main>

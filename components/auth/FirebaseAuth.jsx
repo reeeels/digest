@@ -47,6 +47,7 @@ const FirebaseAuth = () => {
             setRenderAuth(true)
         }
     }, [])
+    
     return (
         <div>
             {renderAuth ? (
@@ -59,4 +60,4 @@ const FirebaseAuth = () => {
     )
 }
 
-export default FirebaseAuth
+export default FirebaseAuth;

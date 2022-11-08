@@ -42,21 +42,10 @@ const home = () => {
     'Health',
     'Business',
     'World',
-    // 'National',
-    // 'Politics',
-    // 'Opinion',
-    // 'Arts',
-    // 'Fashion',
-    // 'Food',
-    // 'Travel',
-    // 'Magazine',
-    // 'Real Estate',
-    // 'T Magazine',
-    // 'Video',
   ]
 
-  if (user) {
-    { console.log(user) }
+  // if (user) {
+  //   { console.log(user) }
     return (
       <div className='container mx-auto'>
         <Head>
@@ -66,15 +55,15 @@ const home = () => {
         </Head>
         <Navbar />
         <div className='mx-32 flex flex-col z-0'>
-          <div className='sticky top-5 mb-20'>
-            <h1 className='absolute left-0 text-3xl font-bold'>{greeting} {user.name}</h1>
+          <div className='sticky top-5 mb-20 bg-black'>
+            <h1 className='absolute left-0 text-3xl font-bold'>{greeting} {"Temiloluwa"}</h1>
             <div className='absolute right-20 border p-1 rounded-lg'>
               <SearchIcon sx={{ fontSize: 20 }} />
               <input type='text' className='bg-inherit btn ml-1' placeholder='Search' />
             </div>
           </div>
-          <div className='grid content-evenly ml-10 mb-32'>
-            <h1 className='text-5xl'>[Placeholder]</h1>
+          <div className='grid content-evenly ml-10 mb-20'>
+            <h1 className='text-7xl'>...Let's Digest</h1>
           </div>
           <h1 className='text-2xl font-bold'>Topics</h1>
           <div className='flex flex-row flex-wrap space-x-4 content-evenly mb-5 mt-5'>
@@ -85,28 +74,34 @@ const home = () => {
           </div>
           <div className='grid content-evenly ml-10 mb-32'>
             {/* {news && <Article news={news} />} */}
-            <h1 className='text-5xl mb-5'>{news && news[0].source.name}</h1>
-            <div class="snap-mandatory snap-x flex flex-row space-x-4">
+            <h1 className='text-5xl mb-5 text-right font-bold'>{news && news[0].source.name}</h1>
+            <div className="flex flex-row space-x-4">
               <div>
                 {news && news[0].title}
               </div>
             </div>
-            <h1 className='text-5xl mb-5'>{news && news[1].source.name}</h1>
-            <div class="snap-mandatory snap-x flex flex-row space-x-4">
+            <h1 className='text-5xl mb-5 text-right mt-10 font-bold'>{news && news[1].source.name}</h1>
+            <div className="flex flex-row space-x-4">
               <div>
                 {news && news[1].title}
               </div>
             </div>
-            <h1 className='text-5xl mb-5'>{news && news[2].source.name}</h1>
-            <div class="snap-mandatory snap-x flex flex-row space-x-4">
+            <h1 className='text-5xl mb-5 text-right mt-10 font-bold'>{news && news[2].source.name}</h1>
+            <div className="flex flex-row space-x-4">
               <div>
                 {news && news[2].title}
               </div>
             </div>
-            <h1 className='text-5xl mb-5'>{news && news[3].source.name}</h1>
-            <div class="snap-mandatory snap-x flex flex-row space-x-4">
+            <h1 className='text-5xl mb-5 text-right mt-10 font-bold'>{news && news[3].source.name}</h1>
+            <div className="flex flex-row space-x-4">
               <div>
                 {news && news[3].title}
+              </div>
+            </div>
+            <h1 className='text-5xl mb-5 text-right mt-10 font-bold'>{news && news[4].source.name}</h1>
+            <div className="flex flex-row space-x-4">
+              <div>
+                {news && news[4].title}
               </div>
             </div>
           </div>
@@ -117,10 +112,9 @@ const home = () => {
             <h1 className='text-5xl'>[Placeholder]</h1>
           </div>
         </div>
-        {/* <Copyright sx={{ pt: 4 }} /> */}
       </div>
     );
   }
-}
+// }
 
 export default home;
