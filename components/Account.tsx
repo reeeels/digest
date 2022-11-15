@@ -1,5 +1,6 @@
-import React from 'react'
-import { Menu } from '@headlessui/react'
+import React from 'react';
+import { Menu } from '@headlessui/react';
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { initFirebase } from '../firebase/initFirebase';
 import { useUser } from '../firebase/useUser';
@@ -10,9 +11,9 @@ const Account = () => {
     return (
         <Menu>
             <Menu.Button className='focus:outline-none'>
-                <AccountCircleIcon sx={{ fontSize: 30 }} />
+                <MoreHorizIcon sx={{ fontSize: 30 }} />
             </Menu.Button>
-            <Menu.Items className='absolute space-y-2 border bg-inherit p-2 shadow-md rounded-lg flex flex-col focus:outline-none w-36s divide-gray-100 origin-top-left mt-2'>
+            <Menu.Items className='absolute space-y-2 border bg-inherit p-2 shadow-md rounded-lg flex flex-col focus:outline-none w-32 right-5 origin-top-left mt-2'>
                 <Menu.Item>
                     {({ active }) => (
                         <a className={`${active && ''}`} href='/account-settings'>
@@ -26,7 +27,7 @@ const Account = () => {
                             className={`${active && ''}`}
                             href='/account-settings'
                         >
-                            Documentation
+                            Docs
                         </a>
                     )}
                 </Menu.Item>

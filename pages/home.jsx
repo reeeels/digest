@@ -7,6 +7,7 @@ import Topic from '../components/Topic';
 import Image from 'next/image';
 import db from '../firebase/initFirebase';
 import { Article } from '../components/Article';
+// import Banner from '../public/banner.png';
 
 const home = () => {
   const date = new Date().getHours();
@@ -44,8 +45,7 @@ const home = () => {
     'World',
   ]
 
-  // if (user) {
-  //   { console.log(user) }
+  if (user) {
     return (
       <div className='container mx-auto'>
         <Head>
@@ -54,34 +54,47 @@ const home = () => {
           <link rel='icon' href='./public/favicon.ico' />
         </Head>
         <Navbar />
-        <div className='mx-32 flex flex-col z-0'>
-          <div className='sticky top-5 mb-20 bg-black'>
-            <h1 className='absolute left-0 text-3xl font-bold'>{greeting} {"Temiloluwa"}</h1>
-            <div className='absolute right-20 border p-1 rounded-lg'>
+        <div className='mx-32 flex flex-col'>
+          <div className='sticky top-0 mb-10 bg-white py-5'>
+            <h1 className='left-0 text-4xl font-bold'>{greeting} {user.name}</h1>
+            {/* <div className='relative right-20 border p-1 rounded-lg'>
               <SearchIcon sx={{ fontSize: 20 }} />
               <input type='text' className='bg-inherit btn ml-1' placeholder='Search' />
+            </div> */}
+          </div>
+          <div className='flex justify-center mb-10'>
+            <Image src='/banner.jpg' alt='digest' width={750} height={250} />
+            {/* <h1 className='text-7xl'>...Let's Digest</h1> */}
+          </div>
+          <div className='sticky top-16 bg-white mb-10'>
+            <h1 className='text-2xl font-bold'>Topics</h1>
+            <div className='flex flex-row space-x-4 justify-center mb-5 mt-5'>
+              {Topics.map((topic) => <Topic label={topic} />)}
             </div>
           </div>
-          <div className='grid content-evenly ml-10 mb-20'>
-            <h1 className='text-7xl'>...Let's Digest</h1>
-          </div>
-          <h1 className='text-2xl font-bold'>Topics</h1>
-          <div className='flex flex-row flex-wrap space-x-4 content-evenly mb-5 mt-5'>
-            {Topics.map((topic) => <Topic label={topic} />)}
-          </div>
-          <div className='sticky top-20 mb-10'>
+          <div className='sticky top-40 mb-10 bg-white'>
             <h1 className='text-2xl font-bold'>Trending</h1>
           </div>
           <div className='grid content-evenly ml-10 mb-32'>
             {/* {news && <Article news={news} />} */}
             <h1 className='text-5xl mb-5 text-right font-bold'>{news && news[0].source.name}</h1>
             <div className="flex flex-row space-x-4">
+              {news &&
+                <div>
+                  {news[0].urlToImage && <Image src={news[0].urlToImage} width={300} height={300} />}
+                </div>
+              }
               <div>
                 {news && news[0].title}
               </div>
             </div>
             <h1 className='text-5xl mb-5 text-right mt-10 font-bold'>{news && news[1].source.name}</h1>
             <div className="flex flex-row space-x-4">
+              {/* {news &&
+                <div>
+                  {news[1].urlToImage && <Image src={news[1].urlToImage} width={300} height={300} />}
+                </div>
+              } */}
               <div>
                 {news && news[1].title}
               </div>
@@ -115,6 +128,6 @@ const home = () => {
       </div>
     );
   }
-// }
+}
 
 export default home;

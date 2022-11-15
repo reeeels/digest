@@ -10,14 +10,6 @@ const firebaseConfig = {
     // messagingSenderId: process.env.MESSAGING_SENDER_ID,
     // appId: process.env.APP_ID,
     // measurementId: process.env.MEASUREMENT_ID,
-
-    apiKey: "AIzaSyDRYvkx6Bp_qaqeqOwYZHHMC1y8fmjhZPo",
-    authDomain: "digest-43201.firebaseapp.com",
-    projectId: "digest-43201",
-    storageBucket: "digest-43201.appspot.com",
-    messagingSenderId: "802832673078",
-    appId: "1:802832673078:web:ccfe749490ca64ca32ab97",
-    measurementId: "G-BCSZJMX06T"
 };
 
 function initFirebase() {

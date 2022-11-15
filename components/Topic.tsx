@@ -15,7 +15,7 @@ const Topic = ({ label }: Props) => {
     return (
         <div className=''>
             <div className='flex flex-row'>
-                <Chip label={label} variant="outlined" color="warning" onClick={handleClick} />
+                <Chip label={label} variant="outlined" color="info" onClick={handleClick} />
             </div>
         </div>
     )

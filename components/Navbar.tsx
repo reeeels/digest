@@ -3,6 +3,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import HomeIcon from '@mui/icons-material/Home';
 import Image from 'next/image';
 import WorkspacesIcon from '@mui/icons-material/Workspaces';
@@ -26,12 +27,12 @@ const Navbar = () => {
           </motion.button>
           <Typography sx={{ flexGrow: 1 }} />
           <div className='space-x-5'>
-            <IconButton color='inherit' href='/home'>
+            {/* <IconButton color='inherit' href='/home'>
               <HomeIcon sx={{ fontSize: 30 }} />
             </IconButton>
             <IconButton color='inherit'>
-              <WorkspacesIcon sx={{ fontSize: 30 }} />
-            </IconButton>
+              <MoreHorizIcon sx={{ fontSize: 30 }} />
+            </IconButton> */}
             <Account />
           </div>
         </Toolbar>
