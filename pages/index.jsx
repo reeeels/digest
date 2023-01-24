@@ -21,7 +21,7 @@ const index = () => {
             transition={{ duration: .5 }}
           >
             <h1 className='text-7xl font-bold text-center'>
-              welcome to Digest!
+              Welcome to Digest!
             </h1>
           </motion.div>
           <motion.div

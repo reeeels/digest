@@ -7,7 +7,6 @@ import Topic from '../components/Topic';
 import Image from 'next/image';
 import db from '../firebase/initFirebase';
 import { Article } from '../components/Article';
-// import Banner from '../public/banner.png';
 
 const home = () => {
   const date = new Date().getHours();
@@ -27,6 +26,12 @@ const home = () => {
     console.log(searchResult);
   }
 
+  // https://newsdata.io/api/1/news?apikey=YOUR_API_KEY&category=sports,health
+  // useEffect(() => {
+  //   fetch('https://newsdata.io/api/1/news?apikey=pub_160171f920c9d9423d26e5db9221cb2dab60c&country=us')
+  //     .then((response) => response.json())
+  //     .then((data) => setNews(data.results));
+  // }, [])
   useEffect(() => {
     fetch('https://newsapi.org/v2/top-headlines?country=us&apiKey=53f7eb5c4a0b4b5f9ba183efb9aa1fd6')
       .then((response) => response.json())
@@ -40,9 +45,6 @@ const home = () => {
     'Entertainment',
     'Technology',
     'Science',
-    'Health',
-    'Business',
-    'World',
   ]
 
   if (user) {
@@ -63,38 +65,22 @@ const home = () => {
             </div> */}
           </div>
           <div className='flex justify-center mb-10'>
-            <Image src='/banner.jpg' alt='digest' width={750} height={250} />
+            {/* <Image src='/banner.jpg' alt='digest' width={750} height={250} /> */}
             {/* <h1 className='text-7xl'>...Let's Digest</h1> */}
           </div>
-          <div className='sticky top-16 bg-white mb-10'>
-            <h1 className='text-2xl font-bold'>Topics</h1>
-            <div className='flex flex-row space-x-4 justify-center mb-5 mt-5'>
-              {Topics.map((topic) => <Topic label={topic} />)}
-            </div>
-          </div>
-          <div className='sticky top-40 mb-10 bg-white'>
+          <div className='sticky top-16 mb-10 bg-white'>
             <h1 className='text-2xl font-bold'>Trending</h1>
           </div>
           <div className='grid content-evenly ml-10 mb-32'>
             {/* {news && <Article news={news} />} */}
             <h1 className='text-5xl mb-5 text-right font-bold'>{news && news[0].source.name}</h1>
             <div className="flex flex-row space-x-4">
-              {news &&
-                <div>
-                  {news[0].urlToImage && <Image src={news[0].urlToImage} width={300} height={300} />}
-                </div>
-              }
               <div>
                 {news && news[0].title}
               </div>
             </div>
             <h1 className='text-5xl mb-5 text-right mt-10 font-bold'>{news && news[1].source.name}</h1>
             <div className="flex flex-row space-x-4">
-              {/* {news &&
-                <div>
-                  {news[1].urlToImage && <Image src={news[1].urlToImage} width={300} height={300} />}
-                </div>
-              } */}
               <div>
                 {news && news[1].title}
               </div>
@@ -118,8 +104,26 @@ const home = () => {
               </div>
             </div>
           </div>
-          <div className='sticky top-5 mb-10'>
-            <h1 className='text-2xl font-bold'>New</h1>
+          <div className='sticky top-24 bg-white mb-10'>
+            <h1 className='text-2xl font-bold'>Your Topics</h1>
+            <div className='flex flex-row space-x-4 justify-center mb-5 mt-5'>
+              {Topics.map((topic) => <Topic label={topic} />)}
+            </div>
+          </div>
+          <div className='mb-10'>
+            <h1 className='text-2xl font-bold text-right'>From [Sports]</h1>
+          </div>
+          <div className='top-5 mb-10'>
+            <h1 className='text-2xl font-bold text-right'>From [Politics]</h1>
+          </div>
+          <div className='top-5 mb-10'>
+            <h1 className='text-2xl font-bold text-right'>From [Entertainment]</h1>
+          </div>
+          <div className='top-5 mb-10'>
+            <h1 className='text-2xl font-bold text-right'>From [Technology]</h1>
+          </div>
+          <div className='top-5 mb-10'>
+            <h1 className='text-2xl font-bold text-right'>From [Science]</h1>
           </div>
           <div className='grid content-evenly ml-10 mb-32'>
             <h1 className='text-5xl'>[Placeholder]</h1>
