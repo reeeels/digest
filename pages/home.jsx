@@ -4,9 +4,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import Navbar from '../components/Navbar';
 import { useUser } from '../firebase/useUser';
 import Topic from '../components/Topic';
-import Image from 'next/image';
 import db from '../firebase/initFirebase';
-import { Article } from '../components/Article';
 
 const home = () => {
   const date = new Date().getHours();
