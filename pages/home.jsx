@@ -57,10 +57,6 @@ const home = () => {
         <div className='mx-32 flex flex-col'>
           <div className='sticky top-0 mb-10 bg-white py-5'>
             <h1 className='left-0 text-4xl font-bold'>{greeting} {user.name}</h1>
-            {/* <div className='relative right-20 border p-1 rounded-lg'>
-              <SearchIcon sx={{ fontSize: 20 }} />
-              <input type='text' className='bg-inherit btn ml-1' placeholder='Search' />
-            </div> */}
           </div>
           <div className='flex justify-center mb-10'>
             {/* <Image src='/banner.jpg' alt='digest' width={750} height={250} /> */}
