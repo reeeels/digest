@@ -21,29 +21,26 @@ const home = () => {
       .collection('topics')
       .where('title', '==', searchValue)
       .get();
-    console.log(searchResult);
+    // console.log(searchResult);
   }
 
-  // https://newsdata.io/api/1/news?apikey=YOUR_API_KEY&category=sports,health
-  // useEffect(() => {
-  //   fetch('https://newsdata.io/api/1/news?apikey=pub_160171f920c9d9423d26e5db9221cb2dab60c&country=us')
-  //     .then((response) => response.json())
-  //     .then((data) => setNews(data.results));
-  // }, [])
   useEffect(() => {
     fetch('https://newsapi.org/v2/top-headlines?country=us&apiKey=53f7eb5c4a0b4b5f9ba183efb9aa1fd6')
       .then((response) => response.json())
       .then((data) => setNews(data.articles));
-  }, [])
+  }, []);
 
-  console.log(news);
   const Topics = [
     'Sports',
     'Politics',
     'Entertainment',
     'Technology',
     'Science',
-  ]
+    'Health',
+    'Business',
+  ];
+
+  const [Frequency, setFrequency] = useState("");
 
   if (user) {
     return (
@@ -54,19 +51,24 @@ const home = () => {
           <link rel='icon' href='./public/favicon.ico' />
         </Head>
         <Navbar />
-        <div className='mx-32 flex flex-col'>
-          <div className='sticky top-0 mb-10 bg-white py-5'>
-            <h1 className='left-0 text-4xl font-bold'>{greeting} {user.name}</h1>
+        <div className='mx-32'>
+          <div className='sticky top-0 bg-white py-5'>
+            <h1 className='left-0 text-6xl font-bold'>{greeting} {user.name}</h1>
+          </div>
+          <div className='flex flex-row mt-2'>
+            <h3 className='mr-2'>How frequent would you like your digest?</h3>
+            <select onChange={e => setFrequency(e.target.value)}>
+              <option value='daily'>Daily</option>
+              <option value='weekly'>Weekly</option>
+              <option value='monthly'>Monthly</option>
+            </select>
           </div>
           <div className='flex justify-center mb-10'>
-            {/* <Image src='/banner.jpg' alt='digest' width={750} height={250} /> */}
-            {/* <h1 className='text-7xl'>...Let's Digest</h1> */}
           </div>
-          <div className='sticky top-16 mb-10 bg-white'>
+          <div className='sticky top-20 mb-10 bg-white'>
             <h1 className='text-2xl font-bold'>Trending</h1>
           </div>
           <div className='grid content-evenly ml-10 mb-32'>
-            {/* {news && <Article news={news} />} */}
             <h1 className='text-5xl mb-5 text-right font-bold'>{news && news[0].source.name}</h1>
             <div className="flex flex-row space-x-4">
               <div>
@@ -104,24 +106,11 @@ const home = () => {
               {Topics.map((topic) => <Topic label={topic} />)}
             </div>
           </div>
-          <div className='mb-10'>
-            <h1 className='text-2xl font-bold text-right'>From [Sports]</h1>
-          </div>
-          <div className='top-5 mb-10'>
-            <h1 className='text-2xl font-bold text-right'>From [Politics]</h1>
-          </div>
-          <div className='top-5 mb-10'>
-            <h1 className='text-2xl font-bold text-right'>From [Entertainment]</h1>
-          </div>
-          <div className='top-5 mb-10'>
-            <h1 className='text-2xl font-bold text-right'>From [Technology]</h1>
-          </div>
-          <div className='top-5 mb-10'>
-            <h1 className='text-2xl font-bold text-right'>From [Science]</h1>
-          </div>
-          <div className='grid content-evenly ml-10 mb-32'>
-            <h1 className='text-5xl'>[Placeholder]</h1>
-          </div>
+          {Topics.map((topic) =>
+            <div className='mb-10'>
+              <h1 className='text-2xl font-bold text-right'>from {topic}</h1>
+            </div>
+          )}
         </div>
       </div>
     );
