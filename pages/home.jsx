@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
-import SearchIcon from '@mui/icons-material/Search';
 import Navbar from '../components/Navbar';
 import { useUser } from '../firebase/useUser';
 import Topic from '../components/Topic';
-import db from '../firebase/initFirebase';
+import { doc, setDoc, Timestamp } from "firebase/firestore";
 
 const home = () => {
   const date = new Date().getHours();
@@ -42,6 +41,25 @@ const home = () => {
 
   const [Frequency, setFrequency] = useState("");
 
+  const topics = [];
+
+  for (let i = 0; i < 10; i++) {
+    // const topic = prompt(`Enter topic ${i + 1}:`);
+    // const frequency = prompt(`How often do you want news on ${topic}?`);
+    // topics.push({ topic, frequency });
+  }
+
+  // Save user inputs to Firebase
+
+  const saveData = async () => {
+    const docData = {
+      topics: [],
+      frequency: frequency,
+    };
+    await setDoc(doc(db, "data", "one"), docData);
+  }
+
+
   if (user) {
     return (
       <div className='container mx-auto'>
@@ -62,6 +80,11 @@ const home = () => {
               <option value='weekly'>Weekly</option>
               <option value='monthly'>Monthly</option>
             </select>
+          </div>
+          <div className='flex flex-row mt-2 mt-5'>
+            <h3 className='mr-5'>Enter a topic you're interested in</h3>
+            <input className='border-2 border-solid'/>
+            <button className='btn-primary ml-5'>ADD</button>
           </div>
           <div className='flex justify-center mb-10'>
           </div>
