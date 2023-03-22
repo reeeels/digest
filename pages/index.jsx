@@ -29,12 +29,7 @@ const index = () => {
             animate={{ opacity: 1, scale: .5 }}
             transition={{ delay: 1.5, duration: .2 }}
           >
-            {/* <Link href='/home'>
-              <a>
-                <h3 className='text-4xl text-right'>Let&apos;s get you started</h3>
-              </a>
-            </Link> */}
-          <Auth />
+            <Auth />
           </motion.div>
         </div>
       </main>

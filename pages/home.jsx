@@ -7,9 +7,7 @@ import { doc, setDoc, Timestamp } from "firebase/firestore";
 
 
 const home = () => {
-  const API_KEY = 'YOUR_API_KEY';
-  const CALENDAR_ID = 'YOUR_CALENDAR_ID';
-  const url = `https://api.nylas.com/calendars/${CALENDAR_ID}/events`;
+
   const date = new Date().getHours();
   const greeting = date < 12 ? 'Morning' : date < 18 ? 'Afternoon' : 'Evening';
   const { user, logout } = useUser();
@@ -45,21 +43,12 @@ const home = () => {
     'Business',
   ];
 
-
-
-  for (let i = 0; i < 10; i++) {
-    // const topic = prompt(`Enter topic ${i + 1}:`);
-    // const frequency = prompt(`How often do you want news on ${topic}?`);
-    // topics.push({ topic, frequency });
-  }
-
-  // Save user inputs to Firebase
-
   const saveData = async () => {
     const docData = {
       topics: [],
       frequency: frequency,
     };
+    
     await setDoc(doc(db, "data", "one"), docData);
   }
 
