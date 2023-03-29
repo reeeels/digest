@@ -4,16 +4,18 @@ import Navbar from '../components/Navbar';
 import { useUser } from '../firebase/useUser';
 import Topic from '../components/Topic';
 import { doc, setDoc, Timestamp } from "firebase/firestore";
+import { sendContactForm } from "../lib/api";
 
+const initValues = { name: "", email: "", subject: "", message: "" };
+const initState = { isLoading: false, error: "", values: initValues };
 
 const home = () => {
 
   const date = new Date().getHours();
-  const greeting = date < 12 ? 'Morning' : date < 18 ? 'Afternoon' : 'Evening';
+  const greeting = date < 12 ? 'Morning,' : date < 18 ? 'Afternoon,' : 'Evening,';
   const { user, logout } = useUser();
   const [news, setNews] = useState();
-  const [events, setEvents] = useState([]);
-  const [Frequency, setFrequency] = useState("");
+  const [frequency, setFrequency] = useState(3600);
   const topics = [];
 
   useEffect(() => {
@@ -22,33 +24,52 @@ const home = () => {
       .then((data) => setNews(data.articles));
   }, []);
 
-  useEffect(() => {
-    fetch(url, {
-      headers: {
-        Authorization: `Basic ${Buffer.from(`${API_KEY}:`).toString('base64')}`,
-      },
-    })
-      .then(response => response.json())
-      .then(data => setEvents(data))
-      .catch(error => console.error(error));
-  }, []);
-
   const Topics = [
     'Sports',
     'Politics',
     'Entertainment',
     'Technology',
     'Science',
-    'Health',
+    'Health', 
     'Business',
   ];
+
+  const sendEmail = async (e) => {
+    setState((prev) => ({
+      ...prev,
+      isLoading: true,
+    }));
+    try {
+      await sendContactForm(values);
+      setTouched({});
+      setState(initState);
+      toast({
+        title: "Message sent.",
+        status: "success",
+        duration: 2000,
+        position: "top",
+      });
+    } catch (error) {
+      setState((prev) => ({
+        ...prev,
+        isLoading: false,
+        error: error.message,
+      }));
+    }
+  }
+
+  const timer = setInterval(() => {
+    console.log('hello');
+  }, frequency * 1000);
+
+  console.log(frequency)
 
   const saveData = async () => {
     const docData = {
       topics: [],
       frequency: frequency,
     };
-    
+
     await setDoc(doc(db, "data", "one"), docData);
   }
 
@@ -64,24 +85,23 @@ const home = () => {
         <Navbar />
         <div className='mx-32'>
           <div className='sticky top-0 bg-white py-5'>
-            <h1 className='left-0 text-6xl font-bold'>{greeting} {user.name}</h1>
+            <h1 className='left-0 text-6xl font-bold'>{greeting} <span className='text-gray-400'>{user.name}</span></h1>
           </div>
           <div className='flex flex-row mt-2'>
             <h3 className='mr-2'>How frequent would you like your digest?</h3>
-            <select onChange={e => setFrequency(e.target.value)}>
-              <option value='daily'>Daily</option>
-              <option value='weekly'>Weekly</option>
-              <option value='monthly'>Monthly</option>
+            <select onChange={e => setFrequency(parseInt(e.target.value))}>
+              <option value='0'></option>
+              <option value='3600'>Hourly</option>
+              <option value='86400'>Daily</option>
+              <option value='604800'>Weekly</option>
             </select>
           </div>
           <div className='flex flex-row mt-2 mt-5'>
             <h3 className='mr-2 mt-1'>Enter a topic you're interested in</h3>
             <form>
-              <input type="text" name="topic" className='border border-black rounded-sm bg-inherit btn ml-1 p-1' placeholder='Search' />
+              <input type="text" name="topic" className='border border-black rounded-sm bg-inherit btn ml-1 p-1' />
               <button className='btn-primary ml-2 btn border border-black rounded-sm p-1' onClick={saveData}>ADD</button>
             </form>
-            {/* <input className='border-2 border-solid'></input>
-             */}
           </div>
           <div className='flex justify-center mb-10'>
           </div>
@@ -89,38 +109,16 @@ const home = () => {
             <h1 className='text-2xl font-bold'>Trending</h1>
           </div>
           <div className='grid content-evenly ml-10 mb-32'>
-            <h1 className='text-5xl mb-5 text-right font-bold'>{news && news[0].source.name}</h1>
-            <div className="flex flex-row space-x-4">
-              <div>
-                {news && news[0].title}
+            {[0, 1, 2, 3, 4].map((i) => <>
+              <h1 className='text-5xl mb-5 text-right mt-5 font-bold'>{news && news[i].source.name}</h1>
+              <div className="flex flex-row space-x-4 mb-10">
+                <div>
+                  {news && news[i].title}
+                </div>
               </div>
-            </div>
-            <h1 className='text-5xl mb-5 text-right mt-10 font-bold'>{news && news[1].source.name}</h1>
-            <div className="flex flex-row space-x-4">
-              <div>
-                {news && news[1].title}
-              </div>
-            </div>
-            <h1 className='text-5xl mb-5 text-right mt-10 font-bold'>{news && news[2].source.name}</h1>
-            <div className="flex flex-row space-x-4">
-              <div>
-                {news && news[2].title}
-              </div>
-            </div>
-            <h1 className='text-5xl mb-5 text-right mt-10 font-bold'>{news && news[3].source.name}</h1>
-            <div className="flex flex-row space-x-4">
-              <div>
-                {news && news[3].title}
-              </div>
-            </div>
-            <h1 className='text-5xl mb-5 text-right mt-10 font-bold'>{news && news[4].source.name}</h1>
-            <div className="flex flex-row space-x-4">
-              <div>
-                {news && news[4].title}
-              </div>
-            </div>
+            </>)}
           </div>
-          <div className='sticky top-24 bg-white mb-10'>
+          <div className='sticky top-28 bg-white mb-10'>
             <h1 className='text-2xl font-bold'>Your Topics</h1>
             <div className='flex flex-row space-x-4 justify-center mb-5 mt-5'>
               {Topics.map((topic) => <Topic label={topic} />)}
